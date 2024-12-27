@@ -8,7 +8,6 @@
 
 # next.js
 /.next/
-/out/
 
 # production
 /build
@@ -28,3 +27,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# node_modules/
+node_modules/
+
+# next.js
+.next/
+
+# env
+.env
