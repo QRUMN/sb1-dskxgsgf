@@ -1,7 +1,14 @@
 "use client"
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Users, Settings, BarChart, ChevronLeft, ChevronRight } from 'lucide-react'
+import { 
+  BookOpen, // for Courses
+  Users, // for Community
+  Calendar, // for Events
+  User, // for Users
+  BarChart, // for Reports
+  Settings, // for Settings
+} from 'lucide-react'
 import { cn } from "@/lib/utils"
 
 interface SidebarProps {
@@ -13,9 +20,11 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
   const pathname = usePathname()
   
   const menuItems = [
-    { href: '/admin', icon: Home, label: 'Dashboard' },
-    { href: '/admin/users', icon: Users, label: 'Users' },
-    { href: '/admin/analytics', icon: BarChart, label: 'Analytics' },
+    { href: '/admin/courses', icon: BookOpen, label: 'Courses' },
+    { href: '/admin/community', icon: Users, label: 'Community' },
+    { href: '/admin/events', icon: Calendar, label: 'Events' },
+    { href: '/admin/users', icon: User, label: 'Users' },
+    { href: '/admin/reports', icon: BarChart, label: 'Reports' },
     { href: '/admin/settings', icon: Settings, label: 'Settings' },
   ]
 
