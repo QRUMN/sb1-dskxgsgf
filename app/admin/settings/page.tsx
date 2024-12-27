@@ -5,40 +5,81 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
+import { Loader2 } from "lucide-react"
 
 export default function SettingsPage() {
   // General Settings State
   const [siteName, setSiteName] = useState('World Trade Compliance Training')
   const [siteDescription, setSiteDescription] = useState('Global platform for international trade regulations and compliance training')
+  const [isGeneralSaving, setIsGeneralSaving] = useState(false)
   
   // Security Settings State
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(false)
   const [passwordExpiry, setPasswordExpiry] = useState(90)
+  const [isSecuritySaving, setIsSecuritySaving] = useState(false)
   
   // Notification Settings State
   const [emailNotifications, setEmailNotifications] = useState(true)
   const [pushNotifications, setPushNotifications] = useState(true)
+  const [isNotificationSaving, setIsNotificationSaving] = useState(false)
 
-  // Save handlers
-  const saveGeneralSettings = () => {
-    toast({
-      title: "Settings Saved",
-      description: "General settings have been updated successfully.",
-    })
+  // Save handlers with simulated API calls
+  const saveGeneralSettings = async () => {
+    setIsGeneralSaving(true)
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      toast({
+        title: "Settings Saved",
+        description: "General settings have been updated successfully.",
+      })
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save general settings. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsGeneralSaving(false)
+    }
   }
 
-  const saveSecuritySettings = () => {
-    toast({
-      title: "Security Settings Updated",
-      description: "Your security preferences have been saved.",
-    })
+  const saveSecuritySettings = async () => {
+    setIsSecuritySaving(true)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      toast({
+        title: "Security Settings Updated",
+        description: "Your security preferences have been saved.",
+      })
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save security settings. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSecuritySaving(false)
+    }
   }
 
-  const saveNotificationSettings = () => {
-    toast({
-      title: "Notification Preferences Saved",
-      description: "Your notification settings have been updated.",
-    })
+  const saveNotificationSettings = async () => {
+    setIsNotificationSaving(true)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      toast({
+        title: "Notification Preferences Saved",
+        description: "Your notification settings have been updated.",
+      })
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to save notification settings. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsNotificationSaving(false)
+    }
   }
 
   return (
@@ -57,6 +98,7 @@ export default function SettingsPage() {
                   value={siteName}
                   onChange={(e) => setSiteName(e.target.value)}
                   placeholder="Enter site name"
+                  disabled={isGeneralSaving}
                 />
               </div>
               <div className="space-y-2">
@@ -66,9 +108,18 @@ export default function SettingsPage() {
                   value={siteDescription}
                   onChange={(e) => setSiteDescription(e.target.value)}
                   placeholder="Enter site description"
+                  disabled={isGeneralSaving}
                 />
               </div>
-              <Button onClick={saveGeneralSettings}>Save General Settings</Button>
+              <Button 
+                onClick={saveGeneralSettings} 
+                disabled={isGeneralSaving}
+              >
+                {isGeneralSaving && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Save General Settings
+              </Button>
             </div>
           </section>
 
@@ -87,6 +138,7 @@ export default function SettingsPage() {
                   id="2fa"
                   checked={twoFactorEnabled}
                   onCheckedChange={setTwoFactorEnabled}
+                  disabled={isSecuritySaving}
                 />
               </div>
               <div className="space-y-2">
@@ -98,9 +150,18 @@ export default function SettingsPage() {
                   onChange={(e) => setPasswordExpiry(Number(e.target.value))}
                   min={0}
                   max={365}
+                  disabled={isSecuritySaving}
                 />
               </div>
-              <Button onClick={saveSecuritySettings}>Save Security Settings</Button>
+              <Button 
+                onClick={saveSecuritySettings} 
+                disabled={isSecuritySaving}
+              >
+                {isSecuritySaving && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Save Security Settings
+              </Button>
             </div>
           </section>
 
@@ -119,6 +180,7 @@ export default function SettingsPage() {
                   id="emailNotifications"
                   checked={emailNotifications}
                   onCheckedChange={setEmailNotifications}
+                  disabled={isNotificationSaving}
                 />
               </div>
               <div className="flex items-center justify-between">
@@ -132,9 +194,18 @@ export default function SettingsPage() {
                   id="pushNotifications"
                   checked={pushNotifications}
                   onCheckedChange={setPushNotifications}
+                  disabled={isNotificationSaving}
                 />
               </div>
-              <Button onClick={saveNotificationSettings}>Save Notification Settings</Button>
+              <Button 
+                onClick={saveNotificationSettings} 
+                disabled={isNotificationSaving}
+              >
+                {isNotificationSaving && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Save Notification Settings
+              </Button>
             </div>
           </section>
         </div>
