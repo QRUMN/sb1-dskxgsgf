@@ -4,9 +4,8 @@ import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { AuthProvider } from '@/components/providers/auth-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { Header } from '@/components/header';
+import { HeaderWrapper } from '@/components/header-wrapper';
 import { Footer } from '@/components/footer';
-import { usePathname } from 'next/navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,18 +19,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Create a client component for conditional header rendering
-  const HeaderWrapper = () => {
-    const pathname = usePathname();
-    const isAdminOrMember = pathname?.startsWith('/admin') || pathname?.startsWith('/member');
-    
-    if (isAdminOrMember) {
-      return null;
-    }
-    
-    return <Header />;
-  }
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
