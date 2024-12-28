@@ -1,5 +1,7 @@
 "use client"
 
+import { ChevronLeft } from "lucide-react"
+
 export default function ReportsPage() {
   return (
     <div className="p-6">
