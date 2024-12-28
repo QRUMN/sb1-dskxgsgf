@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
-import { Loader2, Save, ChevronDown } from "lucide-react"
+import { Loader2, Save, ChevronLeft } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -13,6 +13,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+import Link from "next/link"
 
 interface SettingsState {
   general: {
@@ -121,7 +122,7 @@ export default function SettingsPage() {
         <CollapsibleTrigger className="w-full">
           <CardHeader className="flex flex-row items-center justify-between p-4 md:p-6">
             <CardTitle className="text-lg md:text-xl">{title}</CardTitle>
-            <ChevronDown
+            <ChevronLeft
               className={`h-4 w-4 transition-transform ${
                 openSection === section ? "transform rotate-180" : ""
               }`}
@@ -139,7 +140,14 @@ export default function SettingsPage() {
 
   return (
     <div className="container mx-auto p-4 md:p-6 max-w-4xl">
-      <h1 className="text-2xl md:text-3xl font-bold mb-6">Admin Settings</h1>
+      <div className="flex items-center gap-2 mb-6">
+        <Link href="/admin/dashboard">
+          <Button variant="ghost" size="icon" className="h-8 w-8">
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+        </Link>
+        <h1 className="text-2xl md:text-3xl font-bold">Settings</h1>
+      </div>
       
       {/* General Settings */}
       <SettingSection title="General Settings" section="general">
