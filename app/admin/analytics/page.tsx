@@ -3,7 +3,8 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, BarChart, Users, TrendingUp, DollarSign } from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ChevronLeft, Users, BookOpen, TrendingUp, DollarSign } from "lucide-react"
 import Link from "next/link"
 
 export default function AnalyticsPage() {
