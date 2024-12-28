@@ -12,6 +12,25 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'World Trade Compliance Training',
   description: 'Global platform for international trade regulations and compliance training',
+  openGraph: {
+    title: 'World Trade Compliance Training',
+    description: 'Global platform for international trade regulations and compliance training',
+    images: [
+      {
+        url: 'https://images.pexels.com/photos/1554646/pexels-photo-1554646.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Aerial view of cargo ship',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'World Trade Compliance Training',
+    description: 'Global platform for international trade regulations and compliance training',
+    images: ['https://images.pexels.com/photos/1554646/pexels-photo-1554646.jpeg'],
+    creator: '@yourtwitterhandle',
+  },
 };
 
 export default function RootLayout({
@@ -21,6 +40,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta property="og:image" content="https://images.pexels.com/photos/1554646/pexels-photo-1554646.jpeg" />
+        <meta property="og:image:alt" content="Aerial view of cargo ship" />
+        <meta name="twitter:image" content="https://images.pexels.com/photos/1554646/pexels-photo-1554646.jpeg" />
+      </head>
       <body className={inter.className}>
         <ThemeProvider>
           <AuthProvider>
